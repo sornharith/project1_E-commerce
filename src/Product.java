@@ -1,18 +1,20 @@
 
-public class Product {
+public class Product implements Comparable<Product> {
     private int ID;
     private String name;
     private String description;
     private float price;
     private int stock;
+    private int count = 0;
+    private static int runningID = 0;
     
     public Product(){
-        this.ID = 0;
+        this.ID = ++runningID;
 
     }
 
-    public Product(int id, String name, String description , float price, int stock){
-        this.ID = id;
+    public Product(String name, String description , float price, int stock){
+        this.ID = ++runningID;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -57,5 +59,31 @@ public class Product {
 
     public int get_stock(){
         return this.stock;
+    }
+
+    private String available(){
+        if (stock <= 0) return "out of stock";
+        else return "available";
+    }
+    @Override
+    public String toString(){
+        return "ID: "+ID+" -> "+name+" \tprice: "+price+"\t\t"+available();
+    }
+
+    public String toCart(){
+        return "ID: "+ID+" -> "+name+" \tprice: "+price+"\t\t"+count;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    @Override
+    public int compareTo(Product o) {
+        return Integer.compare(this.get_productID(), o.get_productID());
     }
 }

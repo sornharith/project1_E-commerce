@@ -1,3 +1,4 @@
+
 public class ArrayList<T> {
 
     private static final int INIT_CAPA = 10;
@@ -64,12 +65,9 @@ public class ArrayList<T> {
         size = 0;
     }
 
-    public T toArray(){
-        String toA = new String();
-        for(int i = 0 ; i < array.length ;i++){
-            String a = (String)array[i];
-            toA += a;
-        }
-        return (T) toA;
-    }
+//    public T[] toArray(){
+//        Object[] a = new Object[size];
+//        System.arraycopy(array, 0, a, 0, size);
+//        return (T[]) a;
+//    }
 }
