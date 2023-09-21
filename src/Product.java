@@ -61,13 +61,13 @@ public class Product implements Comparable<Product> {
         return this.stock;
     }
 
-    private String available(){
+    public String available(){
         if (stock <= 0) return "out of stock";
         else return "available";
     }
-    @Override
+//    @Override
     public String toString(){
-        return "ID: "+ID+" -> "+name+" \tprice: "+price+"\t\t"+available();
+        return "ID: "+ID+" -> "+name+" \tprice: "+price+"\t"+"stock: "+stock;
     }
 
     public String toCart(){
@@ -81,6 +81,7 @@ public class Product implements Comparable<Product> {
     public void setCount(int count) {
         this.count = count;
     }
+
 
     @Override
     public int compareTo(Product o) {
