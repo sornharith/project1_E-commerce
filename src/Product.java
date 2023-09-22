@@ -1,5 +1,7 @@
+import java.text.DecimalFormat;
 
 public class Product implements Comparable<Product> {
+    public static final DecimalFormat df = new DecimalFormat("0.00");
     private int ID;
     private String name;
     private String description;
@@ -49,8 +51,10 @@ public class Product implements Comparable<Product> {
         this.price = price;
     }
 
-    public float get_price(){
-        return this.price;
+    public String get_price(){
+        String p = df.format(this.price);
+        if (price < 10) p += " ";
+        return p;
     }
 
     public void set_stock(int stock){
@@ -63,7 +67,7 @@ public class Product implements Comparable<Product> {
 
     public String available(){
         if (stock <= 0) return "out of stock";
-        else return "available";
+        else return "  available ";
     }
 //    @Override
     public String toString(){

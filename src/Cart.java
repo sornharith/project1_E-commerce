@@ -1,16 +1,12 @@
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Cart {
-    private final ArrayList<Product> product;
+
+    private ArrayList<Product> product;
     private final LinkedList<Product> cart;
     Scanner sc = new Scanner(System.in);
     public Cart(){
-        product = new ArrayList<>();
-        product.add(new Product("coke","soda",15,10));
-        product.add(new Product("minera","water",10,5));
-        product.add(new Product("HongThai","inhaler",45,20));
-
+        product = new Readproduct().get_p();
         cart = new LinkedList<>();
     }
 
@@ -33,6 +29,13 @@ public class Cart {
         }
     }
 
+    public void add_product(){
+        System.out.print("Input new product in this formular -> Name,Description,price,stock\n -> ");
+        String input = sc.nextLine();
+        String[] raw = input.split(",");
+        product.add(new Product(raw[0],raw[1],Float.parseFloat(raw[2]),Integer.parseInt(raw[3])));
+        System.out.println("Complete adding -> "+product.get(product.size()-1).get_name() + " price: "+ product.get(product.size()-1).get_price());
+    }
     public void remove(int n){
         Product a = product.get(n);
         int c = a.getCount();
@@ -46,14 +49,15 @@ public class Cart {
     }
 
     private void showOption(){
-        System.out.println("Enter ID to select item");
-        System.out.println("Enter 'q' for exit");
+        System.out.println("Enter ID to select item.");
+        System.out.println("Enter 'c' to look in cart");
+        System.out.println("Enter 'q' for check out.");
     }
     public void showProduct(){
         for(int i = 0 ; i < product.size() ; i++) {
 //            System.out.println(product.get(i).toString());
             Product n = product.get(i);
-            System.out.printf("| ID: -> %-2d %-10s | Price: %.2f | Stock: %-2d |%n",n.get_productID(),n.get_name(), n.get_price(), n.get_stock());
+            System.out.printf("| ID: -> %-2d %-10s | Price: %-3s | Stock: %-2d |%n",n.get_productID(),n.get_name(), n.get_price(), n.get_stock());
         }
     }
 
@@ -61,18 +65,18 @@ public class Cart {
         for(int i = 0 ; i < product.size() ; i++) {
 //            System.out.println(product.get(i).toString());
             Product n = product.get(i);
-            System.out.printf("| ID: -> %-2d %-10s | Price: %.2f | %-4s |%n", n.get_productID(), n.get_name(), n.get_price(), n.available());
+            System.out.printf("| ID: -> %-2d %-10s | Price: %-3s | %-4s |%n", n.get_productID(), n.get_name(), n.get_price(), n.available());
         }
         if (o == 1)showOption();
     }
-
 
     public void showCart(){
         for (int i = 0 ; i< cart.size() ; i++){
 //            System.out.println(cart.get(i).toCart());
             Product n = product.get(i);
-            System.out.printf("| ID: -> %-2d %-10s | Price: %.2f | %-2d |%n",n.get_productID(),n.get_name(), n.get_price(), n.getCount());
+            System.out.printf("| ID: -> %-2d %-10s | Price: %-3s | %-2d |%n",n.get_productID(),n.get_name(), n.get_price(), n.getCount());
         }
+        System.out.println(product.size());
     }
 
     public void update(int i){
@@ -82,7 +86,8 @@ public class Cart {
                 break;
             }
             Product n = product.get(i);
-            System.out.println("---------------------------------------------------");
+            System.out.println("_".repeat(51));
+
             System.out.println("Now is " + n.toString());
             System.out.print(" - Enter 1 to change price\n - Enter 2 to update stock\n - Enter 0 to select new item\n - Enter -1 to exit\n -> ");
             int op = sc.nextInt();
@@ -110,6 +115,12 @@ public class Cart {
         }
     }
 
+    public ArrayList<Product> get_nowproduct(){
+        return this.product;
+    }
+    public void save(ArrayList<Product> get){
+        new Readproduct(1,get);
+    }
 //last
 }
 
