@@ -1,10 +1,24 @@
 # project1_E-commerce
 
 ----------------
+# V.0.1.3
+## update
+- read product from .csv
+- updata product data to .csv
+- Admin System 
+  - adding new product
+  - management stock
+## upcoming
+- remove product from store
+- display product in page style (if have time)
+- check out system
+- login
+- display name of user
+- discount code?
+----------------
 # V.0.1.2
 ## update
-- update cart interface
-
+- update cart interface display
 - adding new management stock (update price and stock)
 - display what in cart now
 
