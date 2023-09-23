@@ -1,6 +1,6 @@
 Name,Description,Price,Stock
-coke,soda,15.0,10
-Singha,water,7.0,20
-minera,water,10.0,5
-HongThai,inhaler,45.0,20
-Test,test,0.0,0
+coke,soda,15.00,10
+Singha,water,7.00 ,20
+minera,water,10.00,5
+HongThai,inhaler,45.00,20
+Test,test,0.00 ,0
