@@ -1,18 +1,18 @@
 import java.io.*;
 import java.nio.file.Paths;
 
-public class Readproduct {
+public class Manageproduct {
 
     public static final String PATH = Paths.get("").toAbsolutePath().toString()
             + File.separator + "data" + File.separator ;
     String line = "";
     private final ArrayList<Product> product = new ArrayList<>();
     int count = 0;
-    public Readproduct() {
+    public Manageproduct() {
         count = 0;
         read_add();
     }
-    public Readproduct(int i,ArrayList<Product> got) {
+    public Manageproduct(int i, ArrayList<Product> got) {
         update_csv(got);
     }
 
@@ -39,11 +39,11 @@ public class Readproduct {
     public void update_csv(ArrayList<Product> save){
         StringBuilder write = new StringBuilder();
         write.append("Name").append(",").append("Description").append(",").append("Price").append(",").append("Stock").append("\n");
-//        ArrayList<Product> save = new Cart().get_nowproduct();
-        System.out.println(save.size());
+        save = new Cart().get_nowproduct();
+//        System.out.println(save.size());
         for (int i = 0 ; i < save.size() ; i++){
             write.append(save.get(i).get_name()).append(",").append(save.get(i).get_description()).append(",").append(save.get(i).get_price()).append(",").append(save.get(i).get_stock()).append("\n");
-            System.out.println(write.toString());
+//            System.out.println(write.toString());
         }
         try(FileWriter writer = new FileWriter(PATH + "Stock.csv")) {
             writer.write(write.toString());

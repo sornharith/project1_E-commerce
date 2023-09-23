@@ -16,36 +16,27 @@ public class LinkedList<T extends Comparable<T>> {
         } else {
             Node<T> current = this.head;
             while (current.next != null) {
-                current = current.next; // put it to next node
+                current = current.next; // find last node
             }
             current.next = newN;
         }
         size++;
     }
 
-    public T remove(int index){
+    public void remove(int index){
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size " + index);
         }
-
-        Node<T> current = head;
-
         if (index == 0) {
-            size--;
-            head = current.next;
-            return (T) current.data;
+           head = head.getNext();
+        } else {
+            Node<T> temp = head;
+            for (int i = 0; i < index - 1; i++) {
+                temp = temp.getNext();
+            }
+            temp.setNext(temp.getNext().getNext());
         }
-
-        Node<T> temp = null;
-        for (int i = 1; i <= index; i++) {
-            temp = current;
-            current = current.next;
-        }
-
-        temp.next = current.next;
         size--;
-
-        return (T) current.data;
     }
 
     public int size(){ return this.size;}

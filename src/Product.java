@@ -56,6 +56,9 @@ public class Product implements Comparable<Product> {
         if (price < 10) p += " ";
         return p;
     }
+    public float getPrice(){
+        return price;
+    }
 
     public void set_stock(int stock){
         this.stock = stock;
