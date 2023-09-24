@@ -6,6 +6,8 @@ public class Store {
 		Cart a = new Cart();
 		Display show = new Display(a);
 		show.display();
+
+
 /*
 		Scanner sc  = new Scanner(System.in);
 		boolean sp = true;

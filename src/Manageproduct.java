@@ -26,7 +26,7 @@ public class Manageproduct {
                 } else {
                     String[] value = line.split(",");
 //                    System.out.println(Arrays.toString(value));
-                    product.add(new Product(value[0],value[1],Float.parseFloat(value[2]),Integer.parseInt(value[3])));
+                    product.add(new Product(value[0],value[1],value[2],Float.parseFloat(value[3]),Integer.parseInt(value[4])));
                 }
             }
         } catch (FileNotFoundException e){
@@ -38,16 +38,15 @@ public class Manageproduct {
 
     public void update_csv(ArrayList<Product> save){
         StringBuilder write = new StringBuilder();
-        write.append("Name").append(",").append("Description").append(",").append("Price").append(",").append("Stock").append("\n");
-        save = new Cart().get_nowproduct();
+        write.append("ID").append(",").append("Name").append(",").append("Description").append(",").append("Price").append(",").append("Stock").append("\n");
 //        System.out.println(save.size());
         for (int i = 0 ; i < save.size() ; i++){
-            write.append(save.get(i).get_name()).append(",").append(save.get(i).get_description()).append(",").append(save.get(i).get_price()).append(",").append(save.get(i).get_stock()).append("\n");
+            write.append(save.get(i).get_productID()).append(",").append(save.get(i).get_name()).append(",").append(save.get(i).get_description()).append(",").append(save.get(i).get_price()).append(",").append(save.get(i).get_stock()).append("\n");
 //            System.out.println(write.toString());
         }
         try(FileWriter writer = new FileWriter(PATH + "Stock.csv")) {
             writer.write(write.toString());
-            System.out.println("Complete Update data");
+            System.out.println("\nComplete Update data.");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
