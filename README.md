@@ -1,6 +1,20 @@
 # project1_E-commerce
 
 ----------------
+# V.0.1.5
+## update
+
+- new product ID
+- check out system
+- discount code
+- login for admin
+
+## upcoming
+
+- display name of user
+- display product in page style ***(if have time)***
+- adding product to .csv
+----------------
 # V.0.1.4
 ## update
 
