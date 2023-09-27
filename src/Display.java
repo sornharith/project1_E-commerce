@@ -11,7 +11,7 @@ public class Display {
     public void display(){
         Scanner sc  = new Scanner(System.in);
         boolean sp = true;
-        System.out.println("_".repeat(54));
+        System.out.println("_".repeat(64));
         while(true){
             if (sp) a.showProduct(1);
             sp = true;
@@ -19,10 +19,23 @@ public class Display {
 //            char c = sc.next().charAt(0);
             String c = sc.nextLine();
             if (Objects.equals(c, "q")) {
-                a.checkout(a);
-//                System.out.println("Thank you");
-//                a.save(a.get_nowproduct());
-                break;
+                if (a.isEmpty()){
+                    System.out.println("=".repeat(46));
+                    System.out.println("\t\tThank you to come to our store.");
+                    break;
+                }
+                System.out.print("Would you like purchase order plase enter 'y'.\nIf you would like to quit plase enter 'q'.\nAnd if you want to add more item plase enter 'm'.\n -> Enter your choice : ");
+                String confirm = "a";
+                confirm = sc.nextLine();
+                if (confirm.equals("y")) {
+                    a.checkout(a);
+                    break;
+                } else if (confirm.equals("q")) {
+                    System.out.println("=".repeat(46));
+                    System.out.println("\t\tThank you to come to our store.");
+                    break;
+                }
+
             } else if(Objects.equals(c, "c")){
                 sp = false;
                 if (a.isEmpty()){
@@ -82,6 +95,12 @@ public class Display {
                 } else {
                     System.out.println("You are not admin");
                 }
+            }else if (Objects.equals(c, "<") || Objects.equals(c, ">")){
+                if (Objects.equals(c, "<")){
+                    a.b_page();
+                }else{
+                    a.n_page();
+                }
             }else {
                 try {
                     int x = Integer.parseInt(c);
@@ -91,7 +110,7 @@ public class Display {
 
                 }
             }
-            System.out.println("_".repeat(54));
+            System.out.println("_".repeat(64));
 
         }
     }

@@ -86,7 +86,7 @@ public class Product implements Comparable<Product> {
     public boolean available_bool(){
         return stock == 0;
     }
-//    @Override
+    @Override
     public String toString(){
         return "ID: "+ID+" -> "+name+" \tprice: "+price+"\t"+"stock: "+stock;
     }

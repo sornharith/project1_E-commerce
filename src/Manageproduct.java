@@ -26,7 +26,7 @@ public class Manageproduct {
                 } else {
                     String[] value = line.split(",");
 //                    System.out.println(Arrays.toString(value));
-                    product.add(new Product(value[0],value[1],value[2],Float.parseFloat(value[3]),Integer.parseInt(value[4])));
+                    product.add(new Product(value[0].strip(),value[1].strip(),value[2].strip(),Float.parseFloat(value[3].strip()),Integer.parseInt(value[4].strip())));
                 }
             }
         } catch (FileNotFoundException e){

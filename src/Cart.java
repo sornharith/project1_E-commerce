@@ -2,25 +2,41 @@ import java.util.Scanner;
 
 public class Cart {
 
+//    /*
+        String yellowColor = "\u001B[33m"; // Yellow text
+        String magentaColor = "\u001B[35m"; // Magenta text
+        String cyanColor = "\u001B[36m";   // Cyan text
+        String whiteColor = "\u001B[37m";  // White text
+        String brightRedColor = "\u001B[91m"; // Bright red text
+        String resetColor = "\u001B[0m";    // Reset to default color
+//    */
     private ArrayList<Product> product;
     private final LinkedList<Product> cart;
     private float total;
     private final String discount;
     private String dis;
     private static final String userName = "admin",passWord = "datastruct";
+    private static int page;
+    private int show_p = 0;
+    private int showinpage;
+    private boolean Frontp,Lastp;
     Scanner sc = new Scanner(System.in);
     public Cart(){
         product = new Manageproduct().get_p();
         cart = new LinkedList<>();
         discount = "javaispain";
         total = 0;
+        page = 1;
+        showinpage = 15; // setting how many item to show in one page
+        Frontp = true;
+        Lastp = false;
     }
 
     public int get_size(){return cart.size()-1;}
     public void add(int n){
         Product a = product.get(n);
         if (n > product.size()-1){
-            System.out.println("Sorry, we don't have this product in this store");
+            System.out.println(brightRedColor+"Sorry, we don't have this product in this store"+resetColor);
         } else if (!product.get(n).available_bool()) {
             if (!cart.isContain(product.get(n))) {
                 a.setCount(1);
@@ -35,7 +51,7 @@ public class Cart {
             System.out.println("Adding item -> "+a.get_name() + " to cart.");
             cart.sort();
         } else if (product.get(n).available_bool()) {
-            System.out.println("Now "+a.get_name()+" is out of stock");
+            System.out.println(yellowColor+"Now "+a.get_name()+" is out of stock"+resetColor);
         }
     }
 
@@ -57,7 +73,7 @@ public class Cart {
             }
         }while (re > product.size());
         product.remove(re - 1);
-        System.out.println(":Complete remove");
+        System.out.println(brightRedColor+":Complete remove"+resetColor);
     }
     public void remove(int n,int q){
         Product a = product.get(n);
@@ -67,11 +83,26 @@ public class Cart {
         if (a.getCount() < 1) {
             cart.remove(n);
         }
-        System.out.println(":Complete remove");
+        System.out.println(brightRedColor+":Complete remove"+resetColor);
     }
-
-    public void admin(Cart a){
-
+    public void n_page(){
+        if (page <= (int)product.size() / showinpage){
+        page+=1;
+        show_p +=showinpage;
+        if (page > 1) {
+            Frontp = false;
+        }
+        }
+    }
+    public void b_page(){
+        if ( page != 1){
+            page-=1;
+            show_p -= showinpage;
+            Lastp = false;
+            if (page == 1){
+                Frontp = true;
+            }
+        }
     }
 
     private void showOption(){
@@ -79,22 +110,38 @@ public class Cart {
         System.out.println("Enter 'c' to look in cart.");
         System.out.println("Enter 'r' to remove item from cart.");
         System.out.println("Enter 'q' for check out.");
+        if (Frontp){
+            System.out.println("Enter '>' for going to next page.");
+        } else if (Lastp){
+            System.out.println("Enter '<'  for going to previous.");
+        } else{
+            System.out.println("Enter '<' or '>' for going to previous next page.");
+        }
     }
     public void showProduct(){
         for(int i = 0 ; i < product.size() ; i++) {
 //            System.out.println(product.get(i).toString());
+            if (i == product.size()-1){
+                break;
+            }
             Product n = product.get(i);
-            System.out.printf("| ID: -> %-2s %-10s | Price: %-3s | Stock: %-2d |\n",n.getShowID(),n.get_name(), n.get_price(), n.get_stock());
+            System.out.printf("| ID: -> %-2s %-20s | Price: %-3s | Stock: %-2d |\n",n.getShowID(),n.get_name(), n.get_price(), n.get_stock());
         }
     }
 
     public void showProduct(int o){
-        for(int i = 0 ; i < product.size() ; i++) {
+        for(int i = show_p ; i < page*showinpage ; i++) {
 //            System.out.println(product.get(i).toString());
+            if (i == product.size()){
+                Lastp = true;
+                break;
+            }
             Product n = product.get(i);
-            System.out.printf("| ID: -> %-2s %-10s | Price: %-3s | %-4s |\n", n.getShowID(), n.get_name(), n.get_price(), n.available());
+            System.out.printf("| ID: -> %-2s %-20s | Price: %-3s | %-4s |\n", n.getShowID(), n.get_name(), n.get_price(), n.available());
         }
-        System.out.println("_".repeat(54));
+            System.out.printf("\t\t\t\t\t\t Page %d\n",page);
+
+        System.out.println("_".repeat(64));
         if (o == 1)showOption();
     }
 
@@ -103,7 +150,7 @@ public class Cart {
         for (int i = 0 ; i< cart.size() ; i++){
 //            System.out.println(cart.get(i).toCart());
             Product n = cart.get(i);
-            System.out.printf("| ID: -> %-2s %-10s | Price: %-3s | %-1d |\n",n.get_productID(),n.get_name(), n.get_price(), n.getCount());
+            System.out.printf("| ID: -> %d | %-2s %-20s | Price: %-3s | %-1d |\n",cart.get(i).getShowID(),n.get_productID(),n.get_name(), n.get_price(), n.getCount());
         }
         System.out.println("Total amout : " + totalPrice() + " Bath");
     }
@@ -111,25 +158,30 @@ public class Cart {
     public void checkout(Cart a){
         int d = 0;
         if (!isEmpty()){
-            System.out.print("Plase enter to discount code if not plase enter '-' : ");
-            do {
-                 dis = sc.nextLine();
-                 if (dis.equals("-")){
-                     break;
-                 }
-                 if (!dis.equals(discount)){
-                     System.out.print(" -> Plase check and enter the new correct code : ");
-                 } else{
-                     d = 10; // change to check discount code how many % of code
-                     break;
-                 }
+//            System.out.print("Would you like purchase order plase enter 'y', if would like to quit plase enter 'q' : ");
+//            String confirm = "a";
+//            confirm = sc.nextLine();
+//            if (!confirm.equals('q')) {
+                System.out.print("Plase enter to discount code if not plase enter '-' : ");
+                do {
+                    dis = sc.nextLine();
+                    if (dis.equals("-")) {
+                        break;
+                    }
+                    if (!dis.equals(discount)) {
+                        System.out.print(magentaColor + " -> Plase check and enter the new correct code : " + resetColor);
+                    } else {
+                        d = 10; // change to check discount code how many % of code
+                        break;
+                    }
 
-            }while (!dis.equals("-"));
-            a.recipe(d);
-        }
+                } while (!dis.equals("-"));
+                a.recipe(d);
+                save(product);
+            }
+//        }
         System.out.println("=".repeat(46));
         System.out.println("\t\tThank you to come to our store.");
-        save(product);
     }
 
     public void recipe(int per){
