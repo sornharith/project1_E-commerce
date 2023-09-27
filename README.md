@@ -1,5 +1,10 @@
 # project1_E-commerce
+----------------
+# V.1.0.0 
+## update
 
+- display product in page style
+- adding product to .csv
 ----------------
 # V.0.1.5
 ## update

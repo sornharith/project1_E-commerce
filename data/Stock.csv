@@ -1,5 +1,49 @@
 ID,Name,Description,Price,Stock
-S01,coke,soda,15.00,5
-W01,Singha,water,7.00 ,15
-W02,minera,water,10.00,5
-I01,HongThai,inhaler,45.00,20
+S001,coke,soda,15.00,6
+W001,Singha,water,7.00 ,14
+W002,minera,water,10.00,20
+I001,HongThai,inhaler,45.00,20
+S002,Sprite,Carbonated Soft Drink,15.0,30
+C001,Potato Chips,Salted Snack,25.0,20
+C002,Chocolate Bar, Milk Chocolate,25.0,45
+F001,Sandwich,Ham and Cheese,35.0,12
+W003,Energy Drink,Caffeinated Beverage,30.0,24
+C003,Candy, Assorted Flavors,5.0,22
+F002,MAMA Tom Yum Flavor,Instant Noodles, 12,43
+C004,Gummy Bears, Fruit Flavored Candy, 8,23
+W004,Fruit Juice, Orange Juice, 18,32
+F003,Beef Jerky, Teriyaki Flavor, 60,7
+D001,Ice Cream Vanilla,Cream Vanilla Flavor, 25 ,29
+F004,Peanut Butter, Creamy Peanut Butter, 42,26
+F005,Tuna Sandwich, Tuna Salad, 30,3
+C005,Mixed Nuts, Assorted Nuts, 28,34
+W005,Iced Coffee, Mocha Flavor, 28,46
+C006,Rice Snacks, Seaweed Flavor, 12,13
+W006,Lemonade, Refreshing Drink, 15 ,44
+F006,Canned Soup, Chicken Noodle Soup, 20,19
+C007,Caramel Popcorn, Sweet Snack, 18,32
+C008,Chewing Gum, Spearmint Flavor, 5 ,50
+C009,Cheese Crackers, Cheese Flavored Biscuits, 15,43
+C010,Trail Mix, Nut and Dried Fruit Mix, 15,32
+W007,Instant Coffee, Regular Blend, 16,25
+C011,Rice Krispies Treat, Marshmallow Snack, 12,32
+C012,Sunflower Seeds, Roasted and Salted, 8,50
+F007,Apple, Fresh Fruit, 20,43
+W008,Milk, Fresh Dairy Milk, 18,29
+F008,Beef Jerky, Original Flavor, 40,12
+F009,Cheese Sandwich, Cheese and Tomato, 35,8
+F010,Fruit Cup, Mixed Fruit, 22,77
+C013,Popcorn, Buttered Popcorn, 18,32
+F011,Coconut Water, Natural Coconut Flavor, 25,34
+C014,Protein Bar, Chocolate Chip Flavor, 30,21
+C015,Sausage Roll, Savory Pastry, 20,43
+F012,Canned Fruit, Pineapple Slices, 15,19
+C016,Dried Mango, Sweet and Chewy, 25,48
+C017,Fruit Yogurt, Mixed Berry Flavor, 18,26
+F013,Hot Dog, Classic Frankfurter, 25,12
+C018,Mixed Berries, Frozen Berry Mix, 30,48
+W009,Canned Iced Tea, Lemon Flavor, 12,23
+C019,Pita Bread, Whole Wheat, 10,25
+C020,Granola Bars, Oat and Honey, 20,15
+F014,Pickles, Dill Pickle Spears, 15,12
+F015,Orange, Fresh Citrus Fruit, 10,26
