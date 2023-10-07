@@ -7,7 +7,6 @@ public class Display {
         a = b;
         admin = false;
     }
-
     public void display(){
         Scanner sc  = new Scanner(System.in);
         boolean sp = true;
@@ -20,7 +19,7 @@ public class Display {
             String c = sc.nextLine();
             if (Objects.equals(c, "q")) {
                 if (a.isEmpty()){
-                    System.out.println("=".repeat(46));
+                    System.out.println("=".repeat(64));
                     System.out.println("\t\tThank you to come to our store.");
                     break;
                 }
@@ -31,7 +30,7 @@ public class Display {
                     a.checkout(a);
                     break;
                 } else if (confirm.equals("q")) {
-                    System.out.println("=".repeat(46));
+                    System.out.println("=".repeat(64));
                     System.out.println("\t\tThank you to come to our store.");
                     break;
                 }
@@ -48,7 +47,7 @@ public class Display {
             }else if(Objects.equals(c, "r")) {
                 int num;
                 int q;
-                if (!a.isEmpty()) {
+                if (!a.isEmpty()) { // for check the size of cart that is empty or not
                     System.out.println("Enter the ID of item and quantity to remove.");
                     do {
                         System.out.print("Plase enter ID -> ");
@@ -79,7 +78,7 @@ public class Display {
                     pass = sc.nextLine();
                 }
                 if (a.getUserName().equals(user) && a.getPassWord().equals(pass) || admin) {
-                    admin = true;
+                    admin = true; // it will ask to login 1 time unit exit or logout by them self
                     System.out.print("Welcome to admin center.\n - Enter '-1' for add new product.\n - Enter '0' for remove product.\n - Enter '-9' for logout.\n - Enter ID of item to update.\n -> ");
 //				System.out.print("please enter the ID of item to update : ");
                     int i = sc.nextInt();
@@ -102,7 +101,7 @@ public class Display {
                     a.n_page();
                 }
             }else {
-                try {
+                try { // to check that string input can convert to be int if not it will catch the error
                     int x = Integer.parseInt(c);
                     a.add(x-1);
                 }catch(NumberFormatException e) {

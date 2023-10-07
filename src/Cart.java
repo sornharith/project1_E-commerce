@@ -1,21 +1,20 @@
 import java.util.Scanner;
 
 public class Cart {
-
-//    /*
-        String yellowColor = "\u001B[33m"; // Yellow text
-        String magentaColor = "\u001B[35m"; // Magenta text
-        String cyanColor = "\u001B[36m";   // Cyan text
-        String whiteColor = "\u001B[37m";  // White text
-        String brightRedColor = "\u001B[91m"; // Bright red text
-        String resetColor = "\u001B[0m";    // Reset to default color
-//    */
+    //    /*
+    String yellowColor = "\u001B[33m"; // Yellow text
+    String magentaColor = "\u001B[35m"; // Magenta text
+    String cyanColor = "\u001B[36m";   // Cyan text
+    String whiteColor = "\u001B[37m";  // White text
+    String brightRedColor = "\u001B[91m"; // Bright red text
+    String resetColor = "\u001B[0m";    // Reset to default color
+    //    */
     private ArrayList<Product> product;
     private final LinkedList<Product> cart;
     private float total;
     private final String discount;
     private String dis;
-    private static final String userName = "admin",passWord = "datastruct";
+    private static final String userName = "admin",passWord = "datastruct"; // set the user and password of admin account from here
     private static int page;
     private int show_p = 0;
     private int showinpage;
@@ -38,16 +37,16 @@ public class Cart {
         if (n > product.size()-1){
             System.out.println(brightRedColor+"Sorry, we don't have this product in this store"+resetColor);
         } else if (!product.get(n).available_bool()) {
-            if (!cart.isContain(product.get(n))) {
+            if (!cart.isContain(product.get(n))) { // check that in the cart not have this product yet
                 a.setCount(1);
                 cart.add(a);
-            } else {
+            } else { // if it alerdy have that product it will increase the count of that product
                 int c = a.getCount();
                 c++;
                 a.setCount(c);
             }
             int s = a.get_stock();
-            a.set_stock(s-1);
+            a.set_stock(s-1); // reduce the stock of that item
             System.out.println("Adding item -> "+a.get_name() + " to cart.");
             cart.sort();
         } else if (product.get(n).available_bool()) {
@@ -55,7 +54,7 @@ public class Cart {
         }
     }
 
-    public void add_product(){
+    public void add_product(){ // adding the product to the store by using the provide format
         System.out.print("Enter new product in this formular -> ID,Name,Description,price,stock\n -> ");
         String input = sc.nextLine();
         String[] raw = input.split(",");
@@ -63,10 +62,10 @@ public class Cart {
         System.out.println("Complete adding -> "+product.get(product.size()-1).get_name() + " price: "+ product.get(product.size()-1).get_price());
     }
 
-    public void remove_product(){
+    public void remove_product(){ // remove the product out from the store by using the showID
         System.out.print("Plase enter ID of product to remove from store -> ");
         int re;
-        do {
+        do { // it for check the value that user input is valid or not?
             re = sc.nextInt();
             if (re > product.size()){
                 System.out.print(" -> Plase check and enter ID again.\n : ");
@@ -75,31 +74,32 @@ public class Cart {
         product.remove(re - 1);
         System.out.println(brightRedColor+":Complete remove"+resetColor);
     }
-    public void remove(int n,int q){
+    public void remove(int n,int q){ // remove or reduce product out from the cart
         Product a = product.get(n);
         int c = a.getCount();
         a.setCount(c-q);
+        a.set_stock(a.get_stock()+q);
 //        System.out.println(cart.get(n).get_name()+n);
-        if (a.getCount() < 1) {
+        if (a.getCount() < 1) { // to check that the count of the product in the cart if it less than 1 it mean that not it not have that product in cart
             cart.remove(n);
         }
         System.out.println(brightRedColor+":Complete remove"+resetColor);
     }
-    public void n_page(){
+    public void n_page(){ // it for changing the next page of the product showing
         if (page <= (int)product.size() / showinpage){
         page+=1;
         show_p +=showinpage;
-        if (page > 1) {
+        if (page > 1) { // this for checking the page that is the first page or not.
             Frontp = false;
         }
         }
     }
-    public void b_page(){
+    public void b_page(){ // it for changing the previous page of the product showing
         if ( page != 1){
             page-=1;
             show_p -= showinpage;
             Lastp = false;
-            if (page == 1){
+            if (page == 1){ // to let the method that now it on the first page
                 Frontp = true;
             }
         }
@@ -130,7 +130,7 @@ public class Cart {
     }
 
     public void showProduct(int o){
-        for(int i = show_p ; i < page*showinpage ; i++) {
+        for(int i = show_p ; i < page*showinpage ; i++) { // show_p equal to the start point of showID and page*showinpage is the maxiumn of showID that it will show
 //            System.out.println(product.get(i).toString());
             if (i == product.size()){
                 Lastp = true;
@@ -139,7 +139,7 @@ public class Cart {
             Product n = product.get(i);
             System.out.printf("| ID: -> %-2s %-20s | Price: %-3s | %-4s |\n", n.getShowID(), n.get_name(), n.get_price(), n.available());
         }
-            System.out.printf("\t\t\t\t\t\t Page %d\n",page);
+            System.out.printf("%33s %d\n","Page",page);
 
         System.out.println("_".repeat(64));
         if (o == 1)showOption();
@@ -152,16 +152,12 @@ public class Cart {
             Product n = cart.get(i);
             System.out.printf("| ID: -> %d | %-2s %-20s | Price: %-3s | %-1d |\n",cart.get(i).getShowID(),n.get_productID(),n.get_name(), n.get_price(), n.getCount());
         }
-        System.out.println("Total amout : " + totalPrice() + " Bath");
+        System.out.println("Total amout : " + totalPrice() + " Baht");
     }
 
     public void checkout(Cart a){
         int d = 0;
         if (!isEmpty()){
-//            System.out.print("Would you like purchase order plase enter 'y', if would like to quit plase enter 'q' : ");
-//            String confirm = "a";
-//            confirm = sc.nextLine();
-//            if (!confirm.equals('q')) {
                 System.out.print("Plase enter to discount code if not plase enter '-' : ");
                 do {
                     dis = sc.nextLine();
@@ -177,30 +173,29 @@ public class Cart {
 
                 } while (!dis.equals("-"));
                 a.recipe(d);
-                save(product);
+                save(product); // save the ArrayList of product back to the .CSV
             }
-//        }
-        System.out.println("=".repeat(46));
+        System.out.println("=".repeat(64));
         System.out.println("\t\tThank you to come to our store.");
     }
 
     public void recipe(int per){
         String spname = "LokSorn' shop.co.dog";
-        System.out.println("=".repeat(46));
-        System.out.printf("\t\t\t %10s\n\t\tNo.88/8 BedonBed BangBuaThong,\n\t\t\t Nothaburi, 11110\n", spname);
-        System.out.println("-".repeat(46));
-        System.out.print("| ID\t | Name\t\t\t\t\t |   Price   |\n");
-        System.out.println("-".repeat(46));
+        System.out.println("=".repeat(58));
+        System.out.printf(" %38s\n %43s\n %35s\n",spname,"No.88/8 BedonBed BangBuaThong,","Nothaburi, 11110");
+        System.out.println("-".repeat(58));
+        System.out.printf("| %-2s   | %-36s|   Price   |\n","ID","Name");
+        System.out.println("-".repeat(58));
         for (int i = 0 ; i < cart.size() ; i++){
             Product n = cart.get(i);
-            System.out.printf("| %-2s\t | %-12s x %d\t\t     %-3s   |\n",n.get_productID(),n.get_name(),n.getCount(),n.get_price_total());
+            System.out.printf("| %-2s | %-25s x %-7d     %-3s   |\n",n.get_productID(),n.get_name(),n.getCount(),n.get_price_total());
         }
-        System.out.println("-".repeat(46));
+        System.out.println("-".repeat(58));
         float fina = totalPrice();
-        System.out.printf("| Total \t\t\t\t\t\t\t  %.2f  |\n",fina);
-        System.out.printf("| Discount: %-26s %.2f  |\n",dis,onlydiscount(fina,per));
-        System.out.println("-".repeat(46));
-        System.out.printf("| Total Amount\t\t\t\t\t\t  %.2f  |\n",totaldiscount(fina,per));
+        System.out.printf("| Total   %43.2f    |\n",fina);
+        System.out.printf("| Discount: %-35s %5.2f    |\n",dis,onlydiscount(fina,per));
+        System.out.println("-".repeat(58));
+        System.out.printf("| Total Amount  %37.2f    |\n",totaldiscount(fina,per));
 
     }
 
@@ -212,10 +207,9 @@ public class Cart {
             }
             Product n = product.get(i-1);
             System.out.println("=".repeat(51));
-
             System.out.println("Now is " + n.toString());
             System.out.print(" - Enter 1 to change price\n - Enter 2 to update stock\n - Enter 0 to select new item\n - Enter -1 to exit\n -> ");
-            int op = sc.nextInt();
+            int op = sc.nextInt(); // get the option that what they want to update
             if (op == 1) {
                 System.out.print("Enter new price : ");
                 float p = sc.nextFloat();
@@ -236,7 +230,6 @@ public class Cart {
                 update(sc.nextInt());
             }
                 System.out.println(":After update is " + n.toString());
-
         }
     }
 

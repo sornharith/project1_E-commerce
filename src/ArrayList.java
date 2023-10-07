@@ -34,6 +34,16 @@ public class ArrayList<T> {
         }
         return (T)array[index];
     }
+    public void remove(int index){
+       if (index < 0 || index >= size){
+           throw new IndexOutOfBoundsException();
+       }
+       for (int i = index ; i < size ; i++){
+            array[i] = array[i+1];
+       }
+       array[size - 1] = null;
+       size--;
+    }
 
     private void ensureCAPA(){
         if (size == array.length) {
@@ -44,17 +54,6 @@ public class ArrayList<T> {
         }
     }
 
-    public void remove(int index){
-       if (index < 0 || index >= size){
-           throw new IndexOutOfBoundsException();
-       }
-
-       for (int i = index ; i < size ; i++){
-            array[i] = array[i+1];
-       }
-       array[size - 1] = null;
-       size--;
-    }
 
     public boolean isEmpty(){
         return size == 0;

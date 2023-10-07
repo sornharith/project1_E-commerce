@@ -9,7 +9,7 @@ public class Product implements Comparable<Product> {
     private float price;
     private int stock;
     private int count = 0;
-    private static int runningID = 0;
+    private static int runningID = 0; // to let user easy to input while add to cart
     
     public Product(){
         this.showID = ++runningID;

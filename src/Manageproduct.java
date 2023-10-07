@@ -4,7 +4,7 @@ import java.nio.file.Paths;
 public class Manageproduct {
 
     public static final String PATH = Paths.get("").toAbsolutePath().toString()
-            + File.separator + "data" + File.separator ;
+           + File.separator + "data" + File.separator ; // For finding the Path of the data folder that contain .CSV
     String line = "";
     private final ArrayList<Product> product = new ArrayList<>();
     int count = 0;
@@ -15,8 +15,6 @@ public class Manageproduct {
     public Manageproduct(int i, ArrayList<Product> got) {
         update_csv(got);
     }
-
-
     private void read_add(){ // read file from .csv data and adding it to the arraylist product
         try {
             BufferedReader br = new BufferedReader(new FileReader(PATH + "Stock.csv"));
@@ -36,15 +34,13 @@ public class Manageproduct {
         }
     }
 
-    public void update_csv(ArrayList<Product> save){
+    public void update_csv(ArrayList<Product> save){ // this is a method to write the product after update back to .CSV file
         StringBuilder write = new StringBuilder();
         write.append("ID").append(",").append("Name").append(",").append("Description").append(",").append("Price").append(",").append("Stock").append("\n");
-//        System.out.println(save.size());
-        for (int i = 0 ; i < save.size() ; i++){
+        for (int i = 0 ; i < save.size() ; i++){ // this loop is for convert the arraylist of product back to .CSV file
             write.append(save.get(i).get_productID()).append(",").append(save.get(i).get_name()).append(",").append(save.get(i).get_description()).append(",").append(save.get(i).get_price()).append(",").append(save.get(i).get_stock()).append("\n");
-//            System.out.println(write.toString());
         }
-        try(FileWriter writer = new FileWriter(PATH + "Stock.csv")) {
+        try(FileWriter writer = new FileWriter(PATH + "Stock.csv")) { // set the path and file name back to the same file for update data inside
             writer.write(write.toString());
             System.out.println("\nComplete Update data.");
         } catch (IOException e) {

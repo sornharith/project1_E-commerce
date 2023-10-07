@@ -1,13 +1,10 @@
 public class LinkedList<T extends Comparable<T>> {
-    
     private Node<T> head;
     private int size;
-
     public LinkedList(){
         this.head = null;
         this.size = 0;
     }
-
     public void add(T item){
         Node<T> newN = new Node<>(item);
         
@@ -22,7 +19,6 @@ public class LinkedList<T extends Comparable<T>> {
         }
         size++;
     }
-
     public void remove(int index){
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException("Index: " + index + ", Size " + index);
@@ -38,9 +34,7 @@ public class LinkedList<T extends Comparable<T>> {
         }
         size--;
     }
-
     public int size(){ return this.size;}
-
     public T get(int index) {
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException("Index out of bounds");
@@ -50,6 +44,19 @@ public class LinkedList<T extends Comparable<T>> {
             current = current.next;
         }
         return current.data;
+    }
+    public boolean isContain(T item) {
+        Node<T> current = head;
+        while (current != null) {
+            if (current.data.equals(item)) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+    public void sort() {
+        head = mergeSort(head);
     }
 
     public void set(int index, T item) {
@@ -61,21 +68,6 @@ public class LinkedList<T extends Comparable<T>> {
             current = current.next;
         }
         current.data = item;
-    }
-
-    public boolean isContain(T item) {
-        Node<T> current = head;
-        while (current != null) {
-            if (current.data.equals(item)) {
-                return true;
-            }
-            current = current.next;
-        }
-        return false;
-    }
-
-    public void sort() {
-        head = mergeSort(head);
     }
 
     private Node<T> mergeSort(Node<T> head) {

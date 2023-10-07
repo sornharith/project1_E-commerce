@@ -1,8 +1,8 @@
 ID,Name,Description,Price,Stock
-S001,coke,soda,15.00,5
+S001,coke,soda,15.00,15
 W001,Singha,water,7.00 ,14
 W002,minera,water,10.00,20
-I001,HongThai,inhaler,45.00,19
+I001,HongThai,inhaler,45.00,20
 S002,Sprite,Carbonated Soft Drink,15.00,30
 C001,Potato Chips,Salted Snack,25.00,20
 C002,Chocolate Bar,Milk Chocolate,25.00,45
@@ -47,3 +47,4 @@ C019,Pita Bread,Whole Wheat,10.00,25
 C020,Granola Bars,Oat and Honey,20.00,15
 F014,Pickles,Dill Pickle Spears,15.00,12
 F015,Orange,Fresh Citrus Fruit,10.00,26
+C021,pocky,chocolate flavour,25.00,12

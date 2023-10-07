@@ -5,8 +5,7 @@ public class Store {
 
 		Cart a = new Cart();
 		Display show = new Display(a);
-		show.display();
-
+		show.display(); // call to show all of interface
 
 /*
 		Scanner sc  = new Scanner(System.in);
